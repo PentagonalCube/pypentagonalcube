@@ -13,7 +13,7 @@
 
 #
 #   :code:
-from utils import read_from_environment
+from .utils import read_from_environment
 
 PYPENTAGONALCUBE_DEBUG_LEVEL = read_from_environment(
     variable_name="PYPENTAGONALCUBE_DEBUG",
