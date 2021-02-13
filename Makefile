@@ -1,6 +1,7 @@
-push:
-	python increment_version.py
+VERSION := $(shell python increment_version.py)
+
+push:	
 	git add VERSION.json
 	git add VERSION.py
-	git commit -m ":bookmark: Adding automatic version increment"
-	git push
+	git commit -m ":bookmark: $(VERSION)"
+	#git push
