@@ -45,13 +45,14 @@ def generate_cache_directory_path() -> str:
     return tmp_dir
 
 
-def url_response_is_cached(url: str) -> str or None:
+def url_response_is_cached(url: str, maximum_cached_seconds: int = MAX_CACHE_AGE_SECONDS) -> str or None:
     """
 
     A function to determine if the given url is cached.
     If found and still within our cache age, the file path of the cached file is returned.
 
     :param url:
+    :param maximum_cached_seconds:
     :return:
     """
     #
@@ -67,14 +68,14 @@ def url_response_is_cached(url: str) -> str or None:
                 #   Check the time is valid.
                 time_of_f = int(f.split("-")[1].replace(".json", ""))
                 difference = time.time() - time_of_f
-                if difference < MAX_CACHE_AGE_SECONDS:
+                if difference < maximum_cached_seconds:
                     #
                     #   Time is valid, the file isn't too old.
                     return f"{cache_directory_path}{f}"
     return None
 
 
-def generate_cached_filename_for_url(url: str) -> str:
+def generate_cached_file_path_for_url(url: str) -> str:
     """
 
     A function to generate a cached file path.
@@ -98,19 +99,20 @@ def read_from_cache(file_path) -> dict or list:
     :return:
     """
     cached_data = None
-    with open(file_path, "r", encoding="utf-8") as f:
-        try:
-            cached_data = json.loads(f.read())
-            return cached_data
-        except json.decoder.JSONDecodeError:
-            #
-            #   Likely the cached file is corrupt, delete it.
-            os.remove(file_path)
-            return None
+    if os.path.isfile(file_path):
+        with open(file_path, "r", encoding="utf-8") as f:
+            try:
+                cached_data = json.loads(f.read())
+                return cached_data
+            except json.decoder.JSONDecodeError:
+                #
+                #   Likely the cached file is corrupt, delete it.
+                os.remove(file_path)
+                return None
 
 
 def save_to_cache(url, response):
-    with open(generate_cached_filename_for_url(url), "w", encoding="utf-8") as f:
+    with open(generate_cached_file_path_for_url(url), "w", encoding="utf-8") as f:
         f.write(json.dumps(response, indent=2))
 
 
