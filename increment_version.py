@@ -1,6 +1,6 @@
 import json
 
-with open("VERSION.json", "f", encoding="utf-8") as f:
+with open("VERSION.json", "r", encoding="utf-8") as f:
     DATA = json.loads(f.read())
 
 DATA["revision"] += 1
@@ -16,4 +16,4 @@ with open("VERSION.json", "w", encoding="utf-8") as f:
     f.write(json.dumps(DATA))
 
 with open("VERSION.py", "w", encoding="utf-8") as f:
-    f.write(f"VERSION='v{DATA['major']}.{DATA['minor']}.{DATA['revision']}'\n")
+    f.write(f"VERSION = 'v{DATA['major']}.{DATA['minor']}.{DATA['revision']}'\n")
