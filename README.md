@@ -16,12 +16,12 @@ A public repository to hold a python toolkit.
 # Installation
 
 You can add a line containing the information to your `requirements.txt` for your project:
-`git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6` 
-`git+https://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6`
+`git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.8` 
+`git+https://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.8`
 
 It is also possible to install it directly via pip:
-`python -m pip install git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6`
-`python -m pip install git+https://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6`
+`python -m pip install git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.8`
+`python -m pip install git+https://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.8`
 
 ## Versions
 
