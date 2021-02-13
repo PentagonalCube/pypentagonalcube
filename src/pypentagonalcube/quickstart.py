@@ -1,6 +1,15 @@
 """
 
-    A file to generate
+    q u i c k s t a r t
+    Quickstart
+    ===================
+
+    :description:
+    A python cli to handle generating/copying the template files for services/technologies onto the
+    local machine to help "quickstart" development.
+
+    The templates will likely contain too many examples, but can easily be removed to fit the need of
+    the given project.
 
 """
 #
