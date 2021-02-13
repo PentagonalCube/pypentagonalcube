@@ -1,19 +1,27 @@
 # pypentagonalcube
-A public repository to hold a python toolkit
+A public repository to hold a python toolkit.
 
 
 # Overview
 
 - [Installation](#Installation)
   - [Versions](#Versions)
+- [Logging](#Logging)
+- [Requests](#Requests)
+- [Quickstart](#Quickstart)
 
+
+  
 
 # Installation
 
 You can add a line containing the information to your `requirements.txt` for your project:
-`git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.2.5`
+`git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6` 
+`git+https://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6`
 
-It is also possible to install it directly via pip, `python -m pip install git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.2.5`
+It is also possible to install it directly via pip:
+`python -m pip install git+ssh://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6`
+`python -m pip install git+https://git@github.com/PentagonalCube/pypentagonalcube.git@v0.3.6`
 
 ## Versions
 
@@ -31,6 +39,7 @@ The logger here is just the default logger but with the logging level set by the
 
 ```
 from pypentagonalcube import logging
+logging.info(f"message here")
 ```
 
 **Environment Variable**
@@ -51,6 +60,16 @@ Needing to make an HTTP(s) request is pretty common, the function within this pa
 ```
 #   Defaults to 15 minutes.
 PYPENTAGONALCUBE_CACHE_SECONDS=60  # Any positive number is valid here.  
+```
+
+
+## Examples
+
+**JSON GET Request**
+
+```
+from pypentagonalcube import get_web_request_via_cache
+response = get_web_request_via_cache(url=EXAMPLE_GET_URL)
 ```
 
 
