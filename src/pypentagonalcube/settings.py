@@ -9,9 +9,6 @@
 
 """
 #
-#   :builtins:
-
-#
 #   :code:
 from .utils import read_from_environment
 

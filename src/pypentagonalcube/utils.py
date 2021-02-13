@@ -8,7 +8,6 @@
     A general file to hold utility functions.
 
 """
-
 #
 #   :builtins:
 import hashlib

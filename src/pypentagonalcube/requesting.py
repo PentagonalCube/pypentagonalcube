@@ -25,9 +25,6 @@ from .settings import PYPENTAGONALCUBE_CACHE_SECONDS
 #   :packages:
 import requests
 
-#
-#   :statics:
-
 
 def generate_cache_directory_path() -> str:
     """
