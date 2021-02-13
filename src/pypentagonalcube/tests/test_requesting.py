@@ -22,8 +22,10 @@ class TestRequesting(TestCase):
             os.remove(file_path)
 
     def test_read_from_cache(self):
-
-        pass
+        response = get_web_request_via_cache(url=EXAMPLE_GET_URL)
+        cached_file_path = generate_cached_file_path_for_url(url=EXAMPLE_GET_URL)
+        cached_response = read_from_cache(file_path=cached_file_path)
+        assert response == cached_response
 
     def test_generate_cache_directory_path(self):
         cache_directory = generate_cache_directory_path()
