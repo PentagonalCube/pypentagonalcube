@@ -50,5 +50,3 @@ logging.basicConfig(
     datefmt=LOGGING_DATE_FORMAT,
     level=logging_level
 )
-
-
