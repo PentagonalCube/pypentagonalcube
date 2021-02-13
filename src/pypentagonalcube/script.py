@@ -1,4 +1,4 @@
-from src.pypentagonalcube import logging
+from . import logging
 
 logging.debug("debug")
 logging.info("info")

@@ -14,8 +14,8 @@ import logging
 
 #
 #   :code:
-from settings import PYPENTAGONALCUBE_DEBUG_LEVEL
-from exceptions import InvalidLoggingLevelException
+from .settings import PYPENTAGONALCUBE_DEBUG_LEVEL
+from .exceptions import InvalidLoggingLevelException
 
 #
 #   :statics:
