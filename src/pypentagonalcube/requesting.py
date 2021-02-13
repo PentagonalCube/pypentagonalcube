@@ -19,6 +19,7 @@ import logging
 #
 #   :code:
 from .utils import md5_
+from .settings import PYPENTAGONALCUBE_CACHE_SECONDS
 
 #
 #   :packages:
@@ -26,7 +27,6 @@ import requests
 
 #
 #   :statics:
-MAX_CACHE_AGE_SECONDS = 60 * 10  # 10 minutes
 
 
 def generate_cache_directory_path() -> str:
@@ -45,7 +45,7 @@ def generate_cache_directory_path() -> str:
     return tmp_dir
 
 
-def url_response_is_cached(url: str, maximum_cached_seconds: int = MAX_CACHE_AGE_SECONDS) -> str or None:
+def url_response_is_cached(url: str, maximum_cached_seconds: int = PYPENTAGONALCUBE_CACHE_SECONDS) -> str or None:
     """
 
     A function to determine if the given url is cached.

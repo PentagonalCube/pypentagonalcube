@@ -21,3 +21,47 @@ The repository is versioned using github tags that align with the pip installati
 
 Installation without and `@<version>` tag will install from the base branch `main`, this is always the latest version of the code.
 
+
+
+# Logging
+
+The logger here is just the default logger but with the logging level set by the environment.
+
+**Usage**
+
+```
+from pypentagonalcube import logging
+```
+
+**Environment Variable**
+
+```
+#   Defaults to "error".
+PYPENTAGONALCUBE_DEBUG=info  #  Valid options: debug, info, warning, error, critical
+```
+
+
+# Requests
+
+Needing to make an HTTP(s) request is pretty common, the function within this package allows you to make a request though through a basic cache mechanism.
+
+
+**Environment Variable**
+
+```
+#   Defaults to 15 minutes.
+PYPENTAGONALCUBE_CACHE_SECONDS=60  # Any positive number is valid here.  
+```
+
+
+# Quickstart
+
+A CLI tool to get a definition containing most of the configuration options for a given service/technology.
+
+Rather than just copy/paste pieces from existing projects when starting new ones, it makes sense to centralise the information into a single template and then use that.
+
+Quickstart will create a copy of the definition file stored within its package version for various files.
+
+**Running the tool**
+
+TODO: At the moment the script `quickstart.py` can be run.
