@@ -31,7 +31,8 @@ def md5_(value: str) -> str:
     return str(hashlib.md5(value.encode()).hexdigest())
 
 
-def read_from_environment(variable_name: str, default_value: any = None, decode_from_json: bool = False):
+def read_from_environment(
+        variable_name: str, default_value: any = None, decode_from_json: bool = False, cast_to_type: type = None):
     """
 
     A function to read an environment variable into the application.
@@ -39,11 +40,14 @@ def read_from_environment(variable_name: str, default_value: any = None, decode_
     :param variable_name: The name of the variable in the OS.
     :param default_value: A default value to provide for the variable, note should be correct type.
     :param decode_from_json: Should the value in the environment be decoded from a JSON string?
+    :param cast_to_type: If given, we'll cast to that type.
 
         :return: The default value or the value from the environment.
 
     """
     value_from_environment = os.getenv(variable_name)
+    if cast_to_type is not None:
+        value_from_environment = cast_to_type(value_from_environment)
     if not value_from_environment:
         return default_value
     if decode_from_json:
