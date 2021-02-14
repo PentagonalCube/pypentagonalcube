@@ -21,4 +21,8 @@ with open("VERSION.py", "w", encoding="utf-8") as f:
     f.write(f"VERSION = '{VERSION}'\n")
 
 os.environ["PYPENTAGONALCUBE_VERSION"] = VERSION
-print(VERSION)
+#print(VERSION)
+
+os.system("git add VERSION.json")
+os.system("git add VERSION.py")
+os.system(f"git commit -m ':bookmark: {VERSION}'")
