@@ -46,7 +46,7 @@ def read_from_environment(
 
     """
     value_from_environment = os.getenv(variable_name)
-    if cast_to_type is not None:
+    if value_from_environment and cast_to_type is not None:
         value_from_environment = cast_to_type(value_from_environment)
     if not value_from_environment:
         return default_value

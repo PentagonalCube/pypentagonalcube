@@ -15,6 +15,8 @@ import time
 import os
 import json
 import logging
+import pathlib
+from datetime import datetime, timedelta
 
 #
 #   :code:
@@ -52,6 +54,8 @@ def url_response_is_cached(url: str, maximum_cached_seconds: int = PYPENTAGONALC
     :param maximum_cached_seconds:
     :return:
     """
+    if maximum_cached_seconds is None:
+        maximum_cached_seconds = 0
     #
     #   Render the md5 hash for this url.
     md5_hash = md5_(url)
@@ -63,9 +67,10 @@ def url_response_is_cached(url: str, maximum_cached_seconds: int = PYPENTAGONALC
             if md5_hash in f:
                 #
                 #   Check the time is valid.
-                time_of_f = int(f.split("-")[1].replace(".json", ""))
-                difference = time.time() - time_of_f
-                if difference < maximum_cached_seconds:
+                file_ = pathlib.Path(os.path.join(cache_directory_path, f))
+                file_modified_at = datetime.fromtimestamp(file_.stat().st_mtime)
+                maximum_file_age = file_modified_at + timedelta(seconds=maximum_cached_seconds)
+                if maximum_file_age > datetime.now():
                     #
                     #   Time is valid, the file isn't too old.
                     return f"{cache_directory_path}{f}"
@@ -113,17 +118,18 @@ def save_to_cache(url, response):
         f.write(json.dumps(response, indent=2))
 
 
-def get_web_request_via_cache(url) -> dict or list:
+def get_web_request_via_cache(url: str, maximum_cached_seconds: int = None) -> dict or list:
     """
 
     A function to make a web request to a url via our local disk cache.
 
     :param url:
+    :param maximum_cached_seconds: Optional maximum seconds.
     :return:
     """
     #
     #   Check the cache to see if we have a saved version.
-    cached_filepath = url_response_is_cached(url)
+    cached_filepath = url_response_is_cached(url=url, maximum_cached_seconds=maximum_cached_seconds)
     if cached_filepath:
         #
         #   Return the saved version from the disk.
