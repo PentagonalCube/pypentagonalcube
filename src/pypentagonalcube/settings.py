@@ -14,7 +14,8 @@ from .utils import read_from_environment
 
 PYPENTAGONALCUBE_DEBUG_LEVEL = read_from_environment(
     variable_name="PYPENTAGONALCUBE_DEBUG",
-    default_value="error"
+    default_value="error",
+    cast_to_type=str
 )
 
 PYPENTAGONALCUBE_CACHE_SECONDS = read_from_environment(

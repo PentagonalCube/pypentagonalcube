@@ -17,7 +17,6 @@ import json
 import logging
 import pathlib
 from datetime import datetime, timedelta
-import requests_cache
 
 #
 #   :code:
@@ -28,14 +27,6 @@ from .settings import PYPENTAGONALCUBE_CACHE_SECONDS, CACHE_DATABASE_PATH
 #
 #   :packages:
 import requests
-
-#
-#   Initialise our database.
-#   Caution, takes a while sadly.
-requests_cache.install_cache(
-    cache_name=CACHE_DATABASE_PATH, expire_after=PYPENTAGONALCUBE_CACHE_SECONDS,
-    backend="memory"
-)
 
 
 def generate_cache_directory_path() -> str:
@@ -137,6 +128,16 @@ def get_web_request_via_cache(url: str, maximum_cached_seconds: int = None) -> d
     :param maximum_cached_seconds: Optional maximum seconds.
     :return:
     """
+    #
+    #   Check the cache to see if we have a saved version.
+    cached_filepath = url_response_is_cached(url, maximum_cached_seconds=maximum_cached_seconds)
+    if cached_filepath:
+        #
+        #   Return the saved version from the disk.
+        cached_data = read_from_cache(cached_filepath)
+        if cached_data:
+            logging.info(f"returning the data from cache for: {url}")
+            return cached_data
     #
     #   Return the response from the web.
     logging.info(f"requesting data from the web for: {url}")
